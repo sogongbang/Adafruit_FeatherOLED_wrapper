@@ -11,14 +11,18 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <Arduino.h>
-
-static void arduino_func(void * arg);
+#include "ino/ino.h"
 
 int appmain(int argc, char * argv[])
 {
     int r;
     (void) r;
+
+    printf("\n\n\n");
+    printf("================================================================================\n");
+    printf("arduino_adafruit_battery_sh110x (build time: %s %s)\n", __TIME__, __DATE__);
+    printf("================================================================================\n");
+    printf("\n");
 
     r = task_create(NULL, arduino_func, NULL, task_getlowestpriority(), 0, "arduino");
     ubi_assert(r == 0);
@@ -26,20 +30,4 @@ int appmain(int argc, char * argv[])
     ubik_comp_start();
 
     return 0;
-}
-
-static void arduino_func(void * arg)
-{
-    printf("\n\n\n");
-    printf("================================================================================\n");
-    printf("arduino_adafruit_battery_sh110x (build time: %s %s)\n", __TIME__, __DATE__);
-    printf("================================================================================\n");
-    printf("\n");
-
-    initVariant();
-    setup();
-    for (unsigned int i = 0; ; i++)
-	{
-        loop();
-    }
 }
