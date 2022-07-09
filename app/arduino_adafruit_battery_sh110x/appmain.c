@@ -13,10 +13,6 @@
 
 #include <Arduino.h>
 
-void printValues();
-
-#include "ino/battery_SH110X/battery_SH110X.ino"
-
 static void arduino_func(void * arg);
 
 int appmain(int argc, char * argv[])
@@ -47,4 +43,3 @@ static void arduino_func(void * arg)
         loop();
     }
 }
-
